@@ -1,0 +1,17 @@
+<div class="lista-container">
+  <h3>Vehículos Registrados:</h3>
+
+  <div *ngFor="let auto of vehicles" class="card">
+    <strong>{{ auto.brand }} {{ auto.model }}</strong> <br>
+    Patente: {{ auto.plate_number }} <br>
+    <small>ID: {{ auto.id }}</small>
+  </div>
+</div>
+<div *ngFor="let auto of vehicles" class="card">
+  <strong>{{ auto.brand }} {{ auto.model }}</strong> <br>
+  Patente: {{ auto.plate_number }} <br>
+  
+  <button (click)="deleteVehicle(auto.id)" style="margin-top: 10px; cursor: pointer;">
+    Borrar
+  </button>
+</div>

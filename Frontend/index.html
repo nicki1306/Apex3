@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Apex - Mis Vehículos</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f9;}
+        .card { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+    <h1>Flota de Vehículos 🚗</h1>
+    <div id="lista-vehiculos">Cargando datos desde la API...</div>
+
+    <script>
+        // Esta es la magia: llamamos a tu API
+        fetch("http://localhost:8000/vehicles/")
+            .then(respuesta => respuesta.json())
+            .then(datos => {
+                const contenedor = document.getElementById("lista-vehiculos");
+                contenedor.innerHTML = ""; // Borramos el texto de "Cargando..."
+
+                // Recorremos la lista que mandó Python
+                datos.forEach(auto => {
+                    contenedor.innerHTML += `
+                        <div class="card">
+                            <strong>${auto.brand} ${auto.model}</strong> <br>
+                            Patente: ${auto.plate_number} <br>
+                            <small>ID Interno: ${auto.id}</small>
+                        </div>
+                    `;
+                });
+            })
+            .catch(error => {
+                document.getElementById("lista-vehiculos").innerHTML = "Error al conectar con la API.";
+                console.error(error);
+            });
+    </script>
+
+</body>
+</html>

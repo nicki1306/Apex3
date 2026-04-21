@@ -1,0 +1,7 @@
+<div class="card" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ccc;">
+  <h3>Agregar nuevo vehículo</h3>
+  <input [(ngModel)]="newVehicle.brand" placeholder="Marca">
+  <input [(ngModel)]="newVehicle.model" placeholder="Modelo">
+  <input [(ngModel)]="newVehicle.plate_number" placeholder="Patente">
+  <button (click)="createVehicle()">Guardar</button>
+</div>
