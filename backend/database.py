@@ -1,9 +1,16 @@
+import os
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# ACÁ ESTÁ LA MAGIA: Le agregamos "+pg8000" después de postgresql
-SQLALCHEMY_DATABASE_URL = "postgresql+pg8000://postgres:paloma13@localhost:5432/apex3_db"
+
+load_dotenv()
+
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not SQLALCHEMY_DATABASE_URL:
+    raise ValueError("No se encontró DATABASE_URL en el archivo .env")
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
